@@ -3,6 +3,8 @@ public interface Monster {
 
     public Weapon getWeaponInfo();
 
+    public int getArmorClass();
+
     public String dialogue();
 
     public void addHealth(int add);

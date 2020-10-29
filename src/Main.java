@@ -1,8 +1,12 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        Hero firstHero = new Hero(50, "Axe", 10);
+        Scanner console = new Scanner(System.in);
+        Hero firstHero = new Hero();
+        firstHero.makeHero(console);
 
         System.out.println(firstHero);
     }
