@@ -7,7 +7,10 @@ public class Hero implements Monster{
     private int armorClass;
     private String personName;
     boolean isMagic;
-    //private Elements elementPersonal;
+    Spell fire = new Spell.Fire_Blast();
+
+
+
 
     public void makeHero(Scanner in) {
         PrintStream out = System.out;
