@@ -1,5 +1,4 @@
 public interface Spell {
-    public DiceTray rand = new DiceTray();
     public int rollHit();
     public int rollDieDamage();
     public Effects effect();
@@ -8,11 +7,11 @@ public interface Spell {
     class Fire_Blast implements Spell {
         //Unlimited uses
         public int rollHit() {
-            return rand.d20();
+            return DiceTray.d20();
         }
 
         public int rollDieDamage() {
-            return rand.d6();
+            return DiceTray.d6();
         }
 
         public Effects effect() {
@@ -23,10 +22,10 @@ public interface Spell {
     class Ice_Blast implements Spell {
         //Unlimited uses
         public int rollHit() {
-            return rand.d20();
+            return DiceTray.d20();
         }
         public int rollDieDamage() {
-            return rand.d6();
+            return DiceTray.d6();
         }
         public Effects effect() {
             return Effects.FROZEN;
@@ -40,10 +39,10 @@ public interface Spell {
                 return 0;
             }
             uses--;
-            return rand.d20();
+            return DiceTray.d20();
         }
         public int rollDieDamage() {
-            return rand.d12();
+            return DiceTray.d12();
         }
         public Effects effect() {
             return Effects.FIRE;
