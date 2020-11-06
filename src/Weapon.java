@@ -7,7 +7,7 @@ public class Weapon {
         int damage;
         DiceTray rand = new DiceTray();
         int nam = rand.d4();
-        int dam = rand.d20();
+        int dam = rand.d10();
         if (nam == 1) {
             name = "Axe";
         }

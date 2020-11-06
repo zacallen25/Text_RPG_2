@@ -7,10 +7,6 @@ public class Hero implements Monster{
     private int armorClass;
     private String personName;
     boolean isMagic;
-    Spell fire = new Spell.Fire_Blast();
-
-
-
 
     public void makeHero(Scanner in) {
         PrintStream out = System.out;
@@ -32,17 +28,18 @@ public class Hero implements Monster{
 
 
     public Hero() {
+        this.personName = "N/A";
         this.health = 0;
         weapon = new Weapon();
         this.armorClass = 1;
     }
 
-    public Hero(int health, String name, int damage, int armorClass, boolean isMagic) {
+    public Hero(String personName, int health, String name, int damage, int armorClass, boolean isMagic) {
         this.health = health;
         weapon = new Weapon(name, damage);
         this.armorClass = armorClass;
         this.isMagic = isMagic;
-
+        this.personName = personName;
     }
 
     public int getHealth() {
@@ -68,8 +65,6 @@ public class Hero implements Monster{
     public int getArmorClass() {
         return armorClass;
     }
-
-
 
 
     @Override

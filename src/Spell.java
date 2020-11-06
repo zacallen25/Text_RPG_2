@@ -4,6 +4,7 @@ public interface Spell {
     public int rollDieDamage();
     public Effects effect();
 
+
     class Fire_Blast implements Spell {
         //Unlimited uses
         public int rollHit() {
