@@ -9,7 +9,7 @@ public class Main {
 //
 //        System.out.println(firstHero);
 
-        Hero hero1 = new Hero("Zac", 50, "Axe", 5, 10, true);
+        Hero hero1 = new Hero("Zac", 50, "Axe", 5, 10, true, 2);
         //System.out.println(hero1);
 
 //        Goblin gob1 = new Goblin();
@@ -18,13 +18,12 @@ public class Main {
 //        Goblin gob2 = new Goblin("Moblin", 20, "Axe", 5, 10);
 //        System.out.println(gob2);
 
-        Goblin gob3 = new Goblin("Zac", 20, "Axe", 5, 5);
+        Goblin gob3 = new Goblin("Zac", 20, "Axe", 5, 5, 2);
 //        Affect.doDamage(gob3, 5);
 //        System.out.println(gob3);
-
-        Affect.hitsAndHurts(gob3, DiceTray.d20(), hero1.getWeaponInfo().getDamage());
-
         System.out.println(gob3);
+
+        Affect.hitsAndHurts(gob3, hero1, DiceTray.d20());
 
 
 

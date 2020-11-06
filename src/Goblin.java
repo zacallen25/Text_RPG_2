@@ -3,9 +3,10 @@ public class Goblin implements Monster{
     int health;
     Weapon w;
     int AC;
+    int attackBonus;
 
 
-    public Goblin(String n, int health, String wName, int wDmg, int AC) {
+    public Goblin(String n, int health, String wName, int wDmg, int AC, int attackBonus) {
         boolean checker = n.charAt(n.length() - 1) != 'n' || n.charAt(n.length() - 2) != 'i' || n.charAt(n.length() -3) != 'l';
         if (checker) {
             this.name = n + "-lin";
@@ -16,12 +17,14 @@ public class Goblin implements Monster{
         this.health = health;
         w = new Weapon(wName, wDmg);
         this.AC = AC;
+        this.attackBonus = attackBonus;
     }
 
     public Goblin() {
         this.name = "Bob-lin";
         this.health = 1;
         w = new Weapon();
+        this.attackBonus = 0;
     }
 
     public int getHealth() {
@@ -38,6 +41,14 @@ public class Goblin implements Monster{
 
     public String dialogue() {
         return "I am " + name + " the goblin!";
+    }
+
+    public int getAttackBonus() {
+        return attackBonus;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addHealth(int add) {

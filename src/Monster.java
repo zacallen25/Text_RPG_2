@@ -11,6 +11,10 @@ public interface Monster {
 
     public void removeHealth(int subtract);
 
+    public int getAttackBonus();
+
+    public String getName();
+
     @Override
     public String toString();
 }

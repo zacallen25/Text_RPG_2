@@ -7,6 +7,7 @@ public class Hero implements Monster{
     private int armorClass;
     private String personName;
     boolean isMagic;
+    int attackBonus;
 
     public void makeHero(Scanner in) {
         PrintStream out = System.out;
@@ -23,6 +24,8 @@ public class Hero implements Monster{
         int weaponDamage = in.nextInt();
         out.println("What is your armor class?");
         this.armorClass = in.nextInt();
+        out.println("What is your attack bonus?");
+        this.attackBonus = in.nextInt();
         this.weapon = new Weapon(weaponName, weaponDamage);
     }
 
@@ -32,14 +35,16 @@ public class Hero implements Monster{
         this.health = 0;
         weapon = new Weapon();
         this.armorClass = 1;
+        this.attackBonus = 0;
     }
 
-    public Hero(String personName, int health, String name, int damage, int armorClass, boolean isMagic) {
+    public Hero(String personName, int health, String name, int damage, int armorClass, boolean isMagic, int attackBonus) {
         this.health = health;
         weapon = new Weapon(name, damage);
         this.armorClass = armorClass;
         this.isMagic = isMagic;
         this.personName = personName;
+        this.attackBonus = attackBonus;
     }
 
     public int getHealth() {
@@ -52,6 +57,14 @@ public class Hero implements Monster{
 
     public String dialogue() {
         return "Nothing (for now)";
+    }
+
+    public int getAttackBonus() {
+        return attackBonus;
+    }
+
+    public String getName() {
+        return personName;
     }
 
     public void addHealth(int add) {
