@@ -40,7 +40,12 @@ public class Hero implements Monster{
 
     public Hero(String personName, int health, String name, int damage, int armorClass, boolean isMagic, int attackBonus) {
         this.health = health;
-        weapon = new Weapon(name, damage);
+        if (isMagic) {
+            weapon = new Weapon(name, damage - 3);
+        }
+        else {
+            weapon = new Weapon(name, damage);
+        }
         this.armorClass = armorClass;
         this.isMagic = isMagic;
         this.personName = personName;
@@ -67,6 +72,10 @@ public class Hero implements Monster{
         return personName;
     }
 
+    public boolean isMagical() {
+        return isMagic;
+    }
+
     public void addHealth(int add) {
         health += add;
     }
@@ -77,6 +86,22 @@ public class Hero implements Monster{
 
     public int getArmorClass() {
         return armorClass;
+    }
+
+    public int getChoice() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Do you want to attack with your weapon(1) or with a spell(2)?");
+        int choice = input.nextInt();
+        return choice;
+    }
+
+    public void attack(int choice, Monster attacked, Monster attacker) {
+        if (choice == 1) {
+            System.out.println(Affect.hitsAndHurts(attacked, attacker));
+        }
+        else {
+            System.out.println(Affect.hitAndHurtsSpell(attacked, attacker));
+        }
     }
 
 

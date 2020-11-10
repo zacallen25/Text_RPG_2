@@ -7,6 +7,8 @@ public interface Monster {
 
     public String dialogue();
 
+    public boolean isMagical();
+
     public void addHealth(int add);
 
     public void removeHealth(int subtract);

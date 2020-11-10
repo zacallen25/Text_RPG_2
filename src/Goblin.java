@@ -6,6 +6,10 @@ public class Goblin implements Monster{
     int attackBonus;
 
 
+    public boolean isMagical() {
+        return false;
+    }
+
     public Goblin(String n, int health, String wName, int wDmg, int AC, int attackBonus) {
         boolean checker = n.charAt(n.length() - 1) != 'n' || n.charAt(n.length() - 2) != 'i' || n.charAt(n.length() -3) != 'l';
         if (checker) {
