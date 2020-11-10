@@ -17,12 +17,18 @@ public class Affect {
         }
     }
 
-    public static void hitsAndHurts(Monster attacked, Monster attacker, int attackRoll) {
+    public static String hitsAndHurts(Monster attacked, Monster attacker, int attackRoll) {
         int dmg = attacker.getWeaponInfo().getDamage();
         if (hits(attacked, attacker, attackRoll)) {
             attacked.removeHealth(dmg);
-            System.out.println("Ow! I, " + attacked.getName() + ", was attacked for " + dmg + " damage!");
+            return attacker.getName() + " attacked " + attacked.getName() + " for " + dmg + " damage. \n" + attacked.getName() + " now has " + attacked.getHealth() + " health left";
+        }
+        else {
+            return attacker.getName() + " failed to hit " + attacked.getName();
         }
     }
 
+    public static void addEffect() {
+
+    }
 }

@@ -9,7 +9,7 @@ public class Main {
 //
 //        System.out.println(firstHero);
 
-        Hero hero1 = new Hero("Zac", 50, "Axe", 5, 10, true, 2);
+        Hero hero1 = new Hero("Zac", 50, "Axe", 5, 15, true, 2);
         //System.out.println(hero1);
 
 //        Goblin gob1 = new Goblin();
@@ -18,14 +18,43 @@ public class Main {
 //        Goblin gob2 = new Goblin("Moblin", 20, "Axe", 5, 10);
 //        System.out.println(gob2);
 
-        Goblin gob3 = new Goblin("Zac", 20, "Axe", 5, 5, 2);
+        Goblin gob1 = new Goblin("Moblin", 20, "Axe", 5, 10, 2);
 //        Affect.doDamage(gob3, 5);
 //        System.out.println(gob3);
-        System.out.println(gob3);
 
-        Affect.hitsAndHurts(gob3, hero1, DiceTray.d20());
+        //String msg = Affect.hitsAndHurts(gob3, hero1, DiceTray.d20());
 
+        Goblin gob2 = new Goblin("Boblin", 20, "Sword", 8, 8, 3);
 
+        while (hero1.getHealth() > 0 && gob1.getHealth() > 0 || gob2.getHealth() > 0) {
+            System.out.println("Who do you want to attack? " + gob1.getName() + " (enter 1) or " + gob2.getName() + "(enter 2)");
+            Scanner input = new Scanner(System.in);
+            int in = input.nextInt();
+            if (in == 1) {
+                System.out.println(Affect.hitsAndHurts(gob1, hero1, DiceTray.d20()));
 
+            }
+            else if (in == 2){
+                System.out.println(Affect.hitsAndHurts(gob2, hero1, DiceTray.d20()));
+
+            }
+            else {
+                continue;
+            }
+            if (gob1.getHealth() > 0) {
+                System.out.println(Affect.hitsAndHurts(hero1, gob1, DiceTray.d20()));
+            }
+            if (gob2.getHealth() > 0) {
+                System.out.println(Affect.hitsAndHurts(hero1, gob2, DiceTray.d20()));
+            }
+            System.out.println();
+        }
+
+        if (hero1.getHealth() > 0) {
+            System.out.println("You won!");
+        }
+        else {
+            System.out.println("You lost! I'm sorry. You suck");
+        }
     }
 }
