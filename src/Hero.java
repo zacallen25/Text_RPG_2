@@ -1,19 +1,13 @@
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class Hero implements Monster{
-    private int health;
-    private Weapon weapon;
-    private int armorClass;
-    private String personName;
-    boolean isMagic;
-    int attackBonus;
+public class Hero extends Monster{
 
     public void makeHero(Scanner in) {
         PrintStream out = System.out;
         out.println("Hello there! You are a brand-new hero! Please, enter your name");
-        this.personName = in.next();
-        out.println("Hello there, " + personName);
+        this.name = in.next();
+        out.println("Hello there, " + name);
         out.println("What is your health?");
         this.health = in.nextInt();
         out.println("So, are you magical, or not? (Input true or false)");
@@ -31,61 +25,14 @@ public class Hero implements Monster{
 
 
     public Hero() {
-        this.personName = "N/A";
-        this.health = 0;
-        weapon = new Weapon();
-        this.armorClass = 1;
-        this.attackBonus = 0;
+        super();
     }
 
-    public Hero(String personName, int health, String name, int damage, int armorClass, boolean isMagic, int attackBonus) {
-        this.health = health;
+    public Hero(String name, int health, String weaponName, int damage, int armorClass, boolean isMagic, int attackBonus) {
+        super(health, weaponName, damage, armorClass, isMagic, attackBonus, name);
         if (isMagic) {
             weapon = new Weapon(name, damage - 3);
         }
-        else {
-            weapon = new Weapon(name, damage);
-        }
-        this.armorClass = armorClass;
-        this.isMagic = isMagic;
-        this.personName = personName;
-        this.attackBonus = attackBonus;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public Weapon getWeaponInfo() {
-        return weapon;
-    }
-
-    public String dialogue() {
-        return "Nothing (for now)";
-    }
-
-    public int getAttackBonus() {
-        return attackBonus;
-    }
-
-    public String getName() {
-        return personName;
-    }
-
-    public boolean isMagical() {
-        return isMagic;
-    }
-
-    public void addHealth(int add) {
-        health += add;
-    }
-
-    public void removeHealth(int subtract) {
-        health -= subtract;
-    }
-
-    public int getArmorClass() {
-        return armorClass;
     }
 
     public int getChoice() {
@@ -107,7 +54,7 @@ public class Hero implements Monster{
 
     @Override
     public String toString() {
-        return "Hero's name is: " + personName + "\n" + "Hero health: " + health + "\n" + weapon.toString() + "\n" + "Armor class: " + armorClass + "\n" + "Magical? " + isMagic;
+        return "Hero's name is: " + name + "\n" + "Hero health: " + health + "\n" + weapon.toString() + "\n" + "Armor class: " + armorClass + "\n" + "Magical? " + isMagic;
     }
 
 }

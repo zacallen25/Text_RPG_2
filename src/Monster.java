@@ -1,22 +1,85 @@
-public interface Monster {
-    public int getHealth();
+public abstract class Monster {
+    int health;
+    Weapon weapon;
+    int armorClass;
+    boolean isMagic;
+    int attackBonus;
+    String name;
 
-    public Weapon getWeaponInfo();
+    public Monster() {
+        this.name = "None";
+        this.health = 1;
+        weapon = new Weapon();
+        this.attackBonus = 0;
+        this.isMagic = false;
+        this.armorClass = 0;
+    }
 
-    public int getArmorClass();
+    public Monster(int health, Weapon weapon, int armorClass, boolean isMagic, int attackBonus, String name) {
+        this.health = health;
+        this.weapon = weapon;
+        this.armorClass = armorClass;
+        this.isMagic = isMagic;
+        this.attackBonus = attackBonus;
+        this.name = name;
+    }
 
-    public String dialogue();
+    public Monster(int health, int armorClass, boolean isMagic, int attackBonus, String name) {
+        this.health = health;
+        this.weapon = null;
+        this.armorClass = armorClass;
+        this.isMagic = isMagic;
+        this.attackBonus = attackBonus;
+        this.name = name;
+    }
 
-    public boolean isMagical();
+    public Monster(int health, String weaponName, int weaponDamage, int armorClass, boolean isMagic, int attackBonus, String name) {
+        this.health = health;
+        weapon = new Weapon(weaponName, weaponDamage);
+        this.armorClass = armorClass;
+        this.isMagic = isMagic;
+        this.attackBonus = attackBonus;
+        this.name = name;
+    }
 
-    public void addHealth(int add);
+    public int getHealth() {
+        return health;
+    }
 
-    public void removeHealth(int subtract);
+    public Weapon getWeaponInfo() {
+        return weapon;
+    }
 
-    public int getAttackBonus();
+    public int getArmorClass() {
+        return armorClass;
+    }
 
-    public String getName();
+    public String dialogue() {
+        return "No dialogue";
+    }
+
+    public boolean isMagical() {
+        return isMagic;
+    }
+
+    public void addHealth(int add) {
+        health += add;
+    }
+
+    public void removeHealth(int subtract) {
+        health -= subtract;
+    }
+
+    public int getAttackBonus() {
+        return attackBonus;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
-    public String toString();
+    public String toString() {
+        return "My name is " + name;
+    }
 }

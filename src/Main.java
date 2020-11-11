@@ -59,12 +59,14 @@ public class Main {
 //            System.out.println("You lost! I'm sorry. You suck");
 //        }
 
-        Scanner console = new Scanner(System.in);
-        Hero hero1 = new Hero();
-        hero1.makeHero(console);
-        Goblin gob1 = new Goblin("Moblin", 20, "Axe", 5, 10, 2);
+//        Scanner console = new Scanner(System.in);
+//        Hero hero1 = new Hero();
+//        hero1.makeHero(console);
+//        Goblin gob1 = new Goblin("Moblin", 20, "Axe", 5, 10, 2);
+//
+//        hero1.attack(hero1.getChoice(), gob1, hero1);
 
-        hero1.attack(hero1.getChoice(), gob1, hero1);
-
+        Monster gob1 = new Goblin("Moblin", 20, "Axe", 5, 10, 2);
+        System.out.println(gob1);
     }
 }
