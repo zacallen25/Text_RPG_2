@@ -1,7 +1,7 @@
 public class Goblin extends Monster{
 
-    public Goblin(String n, int health, String wName, int wDmg, int AC, int attackBonus) {
-        super(health, wName, wDmg, AC, false, attackBonus, n);
+    public Goblin(String n, int health, String wName, int wDmg, int AC, int attackBonus, int initAdd) {
+        super(health, wName, wDmg, AC, false, attackBonus, n, initAdd);
         boolean checker = n.charAt(n.length() - 1) != 'n' || n.charAt(n.length() - 2) != 'i' || n.charAt(n.length() -3) != 'l';
         if (checker) {
             this.name = n + "-lin";
@@ -9,6 +9,7 @@ public class Goblin extends Monster{
         else {
             this.name = n;
         }
+        initiative = initAdd + DiceTray.d20();
     }
 
     public Goblin() {

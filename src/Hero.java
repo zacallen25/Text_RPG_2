@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 public class Hero extends Monster{
 
-    public void makeHero(Scanner in) {
+    public void makeHero() {
+        Scanner in = new Scanner(System.in);
         PrintStream out = System.out;
         out.println("Hello there! You are a brand-new hero! Please, enter your name");
         this.name = in.next();
@@ -20,6 +21,12 @@ public class Hero extends Monster{
         this.armorClass = in.nextInt();
         out.println("What is your attack bonus?");
         this.attackBonus = in.nextInt();
+        out.println("What is the initiative bonus?");
+        int initAdd = in.nextInt();
+        initiative = initAdd + DiceTray.d20();
+        if (isMagic) {
+            weaponDamage -= 3;
+        }
         this.weapon = new Weapon(weaponName, weaponDamage);
     }
 
@@ -28,8 +35,8 @@ public class Hero extends Monster{
         super();
     }
 
-    public Hero(String name, int health, String weaponName, int damage, int armorClass, boolean isMagic, int attackBonus) {
-        super(health, weaponName, damage, armorClass, isMagic, attackBonus, name);
+    public Hero(String name, int health, String weaponName, int damage, int armorClass, boolean isMagic, int attackBonus, int initAdd) {
+        super(health, weaponName, damage, armorClass, isMagic, attackBonus, name, initAdd);
         if (isMagic) {
             weapon = new Weapon(name, damage - 3);
         }
@@ -42,12 +49,14 @@ public class Hero extends Monster{
         return choice;
     }
 
-    public void attack(int choice, Monster attacked, Monster attacker) {
+    @Override
+    public String getAction(Monster attacked, Monster attacker) {
+        int choice = getChoice();
         if (choice == 1) {
-            System.out.println(Affect.hitsAndHurts(attacked, attacker));
+            return Affect.hitsAndHurts(attacked, attacker);
         }
         else {
-            System.out.println(Affect.hitAndHurtsSpell(attacked, attacker));
+            return Affect.hitAndHurtsSpell(attacked, attacker);
         }
     }
 

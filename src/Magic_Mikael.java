@@ -1,10 +1,12 @@
 public class Magic_Mikael extends Monster{
 
     public Magic_Mikael() {
+        super();
         this.isMagic = true;
     }
-    public Magic_Mikael(int health, int armorClass, int attackBonus, String name) {
-        super(health, armorClass, true, attackBonus, name);
+
+    public Magic_Mikael(int health, int armorClass, int attackBonus, String name, int initAdd) {
+        super(health, armorClass, true, attackBonus, name, initAdd);
     }
 
 

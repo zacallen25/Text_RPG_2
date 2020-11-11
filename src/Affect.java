@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Affect {
@@ -74,6 +75,23 @@ public class Affect {
         else {
             return "Spell failed to hit.";
         }
+    }
+
+    public static ArrayList<Monster> determineInitiativeOrder(ArrayList<Monster> fighters) {
+        ArrayList<Monster> newArr = new ArrayList<>();
+        while (!fighters.isEmpty()) {
+            Monster mon = fighters.get(0);
+            for (int j = 0; j < fighters.size(); j++) {
+                if (mon.returnInitiative() < fighters.get(j).returnInitiative()) {
+                    mon = fighters.get(j);
+                }
+
+            }
+            fighters.remove(mon);
+            newArr.add(mon);
+        }
+
+        return newArr;
     }
 
     //Needs to be worked on

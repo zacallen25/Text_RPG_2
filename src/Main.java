@@ -1,7 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 //
+
+
 public class Main {
-//
+public static int turns = 0;
+
     public static void main(String[] args) {
 ////        Scanner console = new Scanner(System.in);
 ////        Hero firstHero = new Hero();
@@ -62,11 +66,49 @@ public class Main {
 //        Scanner console = new Scanner(System.in);
 //        Hero hero1 = new Hero();
 //        hero1.makeHero(console);
-//        Goblin gob1 = new Goblin("Moblin", 20, "Axe", 5, 10, 2);
+        Goblin gob1 = new Goblin("Moblin", 20, "Axe", 5, 10, 2, 0);
 //
 //        hero1.attack(hero1.getChoice(), gob1, hero1);
 
-        Monster gob1 = new Goblin("Moblin", 20, "Axe", 5, 10, 2);
-        System.out.println(gob1);
+        Hero hero = new Hero("Zac", 50, "Sword", 10, 15, true, 2, 3);
+        //hero.makeHero();
+
+        Goblin gob2 = new Goblin("Boblin", 20, "Axe", 5, 10, 2, 0);
+//
+        ArrayList<Monster> arr = new ArrayList<>();
+
+        arr.add(hero);
+        arr.add(gob1);
+        arr.add(gob2);
+        System.out.println(hero.getName() + " " + hero.returnInitiative());
+        System.out.println(gob1.getName() +  " " + gob1.returnInitiative());
+        System.out.println(gob2.getName() + " " + gob2.returnInitiative());
+
+        ArrayList<Monster> newArr = Affect.determineInitiativeOrder(arr);
+
+        Scanner in = new Scanner(System.in);
+        while(hero.getHealth() > 0 && gob1.getHealth() > 0 || gob2.getHealth() > 0) {
+            for (int i = 0; i < newArr.size(); i++) {
+                if (newArr.get(i).getHealth() <= 0) {
+                    continue;
+                }
+                if (newArr.get(i) != hero) {
+                    System.out.println(newArr.get(i).getAction(hero, newArr.get(1)));
+                }
+                else {
+                    System.out.println("Do you want to attack goblin 1(1) or goblin 2(2)?");
+                    int choice = in.nextInt();
+                    if (choice == 1) {
+                        System.out.println(newArr.get(i).getAction(gob1, hero));
+                    }
+                    else {
+                        System.out.println(newArr.get(i).getAction(gob2, hero));
+                    }
+                }
+            }
+            turns++;
+        }
+
+
     }
 }
