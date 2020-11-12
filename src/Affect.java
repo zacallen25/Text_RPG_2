@@ -110,12 +110,16 @@ public class Affect {
             }
         }
         do {
+
             for (int i = 0; i < newArr.size(); i++) {
                 if (newArr.get(i).getHealth() <= 0) {
                     if (newArr.get(i).getClass() == Hero.class) {
                         listHeroes.remove(newArr.get(i));
                     }
                     newArr.remove(i);
+                }
+                if (newArr.size() == 1) {
+                    break;
                 }
                 if (newArr.get(i).getClass() != Hero.class) {
                     if (newArr.get(i).getHealth() <= 0) {
@@ -161,6 +165,12 @@ public class Affect {
 
         }while(isTrue);
 
+        if (listHeroes.size() != 0) {
+            System.out.println("Good victory!");
+        }
+        else {
+            System.out.println("Bad defeat!");
+        }
 
     }
 

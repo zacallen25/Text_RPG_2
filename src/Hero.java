@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Hero extends Monster{
 
-    public void makeHero() {
+    public void makeHero(boolean isNoob, boolean customWeapon) {
         Scanner in = new Scanner(System.in);
         PrintStream out = System.out;
         out.println("Hello there! You are a brand-new hero! Please, enter your name");
@@ -13,21 +13,37 @@ public class Hero extends Monster{
         this.health = in.nextInt();
         out.println("So, are you magical, or not? (Input true or false)");
         this.isMagic = in.nextBoolean();
-        out.println("What is your weapon name?");
-        String weaponName = in.next();
-        out.println("What is your weapon damage?");
-        int weaponDamage = in.nextInt();
-        out.println("What is your armor class?");
-        this.armorClass = in.nextInt();
-        out.println("What is your attack bonus?");
-        this.attackBonus = in.nextInt();
-        out.println("What is the initiative bonus?");
-        int initAdd = in.nextInt();
-        initiative = initAdd + DiceTray.d20();
-        if (isMagic) {
-            weaponDamage -= 3;
+        if (customWeapon) {
+            out.println("What is your weapon name?");
+            String weaponName = in.next();
+            out.println("What is your weapon damage?");
+            int weaponDamage = in.nextInt();
+            this.weapon = new Weapon(weaponName, weaponDamage);
+            if (isMagic) {
+                weaponDamage -= 3;
+            }
         }
-        this.weapon = new Weapon(weaponName, weaponDamage);
+        else {
+            out.println("Are you using a sword or an axe?");
+            String weaponName = in.next();
+            weapon = new Weapon(weaponName, isMagic);
+        }
+        if (!isNoob) {
+            out.println("What is your armor class?");
+            this.armorClass = in.nextInt();
+            out.println("What is your attack bonus?");
+            this.attackBonus = in.nextInt();
+            out.println("What is the initiative bonus?");
+            int initAdd = in.nextInt();
+            initiative = initAdd + DiceTray.d20();
+        }
+        else {
+            armorClass = 13;
+            attackBonus = 2;
+            initiative = 2 + DiceTray.d20();
+        }
+
+
     }
 
 

@@ -66,23 +66,7 @@ public static int turns = 0;
 //        Scanner console = new Scanner(System.in);
 //        Hero hero1 = new Hero();
 //        hero1.makeHero(console);
-        Goblin gob1 = new Goblin("Moblin", 20, "Axe", 5, 10, 2, 0);
-//
-//        hero1.attack(hero1.getChoice(), gob1, hero1);
 
-        Hero hero = new Hero("Zac", 50, "Sword", 10, 15, true, 2, 3);
-        //hero.makeHero();
-
-        Goblin gob2 = new Goblin("Boblin", 20, "Axe", 5, 10, 2, 0);
-//
-        ArrayList<Monster> arr = new ArrayList<>();
-
-        arr.add(hero);
-        arr.add(gob1);
-        arr.add(gob2);
-        System.out.println(hero.getName() + " " + hero.returnInitiative());
-        System.out.println(gob1.getName() +  " " + gob1.returnInitiative());
-        System.out.println(gob2.getName() + " " + gob2.returnInitiative());
 
 //        ArrayList<Monster> newArr = Affect.determineInitiativeOrder(arr);
 //
@@ -109,6 +93,29 @@ public static int turns = 0;
 //                }
 //            }
 //        }
+
+
+//
+//        hero1.attack(hero1.getChoice(), gob1, hero1);
+
+        Hero hero = new Hero();
+        hero.makeHero(true, false);
+//        Hero hero2 = new Hero();
+//        hero2.makeHero();
+        //hero.makeHero();
+        Goblin gob1 = new Goblin("Moblin", 20,  10, 2, 0);
+        Goblin gob2 = new Goblin("Boblin", 20,  10, 2, 0);
+
+        ArrayList<Monster> arr = new ArrayList<>();
+
+        arr.add(hero);
+        arr.add(gob1);
+        arr.add(gob2);
+        //arr.add(hero2);
+        System.out.println(hero.getName() + " inititative: " + hero.returnInitiative());
+        System.out.println(gob1.getName() +  " inititative: " + gob1.returnInitiative());
+        System.out.println(gob2.getName() + " inititative: " + gob2.returnInitiative());
+        //System.out.println(hero2.getName() + " inititative: " + hero2.returnInitiative());
 
         Affect.fighting(arr);
 

@@ -30,6 +30,19 @@ public class Weapon {
         this.damage = damage;
     }
 
+    public Weapon(String name, boolean isMagic) {
+        this.name = name;
+        if (name.equals("sword") || name.equals("Sword")) {
+            damage = DiceTray.d6() + DiceTray.d6();
+        }
+        else if (name.equals("axe") || name.equals("Axe")) {
+            damage = DiceTray.d10();
+        }
+
+        if (isMagic) {
+            damage -= 3;
+        }
+    }
 
     public String getName() {
         return name;
