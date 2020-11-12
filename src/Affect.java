@@ -98,4 +98,70 @@ public class Affect {
     public static void addEffect() {
 
     }
+
+
+    public static void fighting(ArrayList<Monster> fighters) {
+        ArrayList<Monster> newArr = determineInitiativeOrder(fighters);
+        ArrayList<Monster> listHeroes = new ArrayList<>();
+        boolean isTrue = true;
+        for (int i = 0; i < newArr.size(); i++) {
+            if (newArr.get(i).getClass() == Hero.class) {
+                listHeroes.add(newArr.get(i));
+            }
+        }
+        do {
+            for (int i = 0; i < newArr.size(); i++) {
+                if (newArr.get(i).getHealth() <= 0) {
+                    if (newArr.get(i).getClass() == Hero.class) {
+                        listHeroes.remove(newArr.get(i));
+                    }
+                    newArr.remove(i);
+                }
+                if (newArr.get(i).getClass() != Hero.class) {
+                    if (newArr.get(i).getHealth() <= 0) {
+                        continue;
+                    }
+                    System.out.println(newArr.get(i).getAction(listHeroes.get(0), newArr.get(i)));
+                }
+                else {
+                    System.out.print("Do you want to attack ");
+                    for (int j = 0; j < newArr.size() - 1; j++) {
+                        if (newArr.get(j).getClass() == Hero.class) {
+                            continue;
+                        }
+                        System.out.print(newArr.get(j) + " " + j + " or ");
+                    }
+                    if (newArr.get(newArr.size() - 1).getClass() != Hero.class) {
+                        System.out.println(newArr.get(newArr.size() - 1) + " " + (newArr.size() - 1));
+                    }
+                    System.out.println("Enter the one that you want to attack as a number");
+                    Scanner in = new Scanner(System.in);
+                    int choice = in.nextInt();
+                    System.out.println(newArr.get(i).getAction(newArr.get(choice), newArr.get(i)));
+
+                }
+
+
+
+
+
+            }
+            for (int i = 0; i < newArr.size(); i++) {
+                isTrue = false;
+                if (newArr.get(i).getClass() != Hero.class) {
+                    if (newArr.get(i).getHealth() > 0) {
+                        isTrue = true;
+                    }
+                }
+                if (listHeroes.size() == 0) {
+                    isTrue = false;
+                }
+            }
+
+
+        }while(isTrue);
+
+
+    }
+
 }

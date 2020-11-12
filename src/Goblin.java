@@ -18,10 +18,6 @@ public class Goblin extends Monster{
     }
 
     public String dialogue() {
-        return "I am " + name + " the goblin!";
-    }
-
-    public String toString() {
         return super.toString() + " the goblin!\n" + "Health: " + health + "\n" + weapon.toString() + "\n" + "Armor class: " + armorClass + "\n";
     }
 

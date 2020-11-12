@@ -60,10 +60,11 @@ public class Hero extends Monster{
         }
     }
 
-
     @Override
-    public String toString() {
+    public String dialogue() {
         return "Hero's name is: " + name + "\n" + "Hero health: " + health + "\n" + weapon.toString() + "\n" + "Armor class: " + armorClass + "\n" + "Magical? " + isMagic;
     }
+
+
 
 }
