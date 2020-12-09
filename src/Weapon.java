@@ -30,6 +30,7 @@ public class Weapon {
         this.damage = damage;
     }
 
+    //I want isMagic to yield an advantage to using magic, but a disadvantage to using normal weapons (-3 damage)
     public Weapon(String name, boolean isMagic) {
         this.name = name;
         if (name.equals("sword") || name.equals("Sword")) {

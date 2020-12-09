@@ -1,3 +1,4 @@
+//This is still very much in progress. The idea is that it would be the goblin class of magic attacks. The basic class for magical attacks
 public class Magic_Mikael extends Monster{
 
     public Magic_Mikael() {

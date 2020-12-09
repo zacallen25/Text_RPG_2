@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//This class is where different objects can affect each other. Therefore, almost every function is public and static, so there is no need for a specific class instance
 public class Affect {
 
     public static void doDamage(Monster m, int dmg) {
@@ -95,8 +96,13 @@ public class Affect {
     }
 
     //Needs to be worked on
-    public static void addEffect() {
-
+    public static void addEffect(Monster m) {
+        if (m.getEffect() == Effects.FIRE) {
+            m.removeHealth(DiceTray.d4());
+        }
+        if (m.getEffect() == Effects.FROZEN) {
+            m.changeAttackBonus(-2);
+        }
     }
 
 
@@ -112,20 +118,17 @@ public class Affect {
         do {
 
             for (int i = 0; i < newArr.size(); i++) {
-                if (newArr.get(i).getHealth() <= 0) {
-                    if (newArr.get(i).getClass() == Hero.class) {
-                        listHeroes.remove(newArr.get(i));
-                    }
-                    newArr.remove(i);
-                }
                 if (newArr.size() == 1) {
                     break;
                 }
                 if (newArr.get(i).getClass() != Hero.class) {
-                    if (newArr.get(i).getHealth() <= 0) {
+                    if (newArr.get(i).getStatus() == State.DEAD) {
                         continue;
                     }
-                    System.out.println(newArr.get(i).getAction(listHeroes.get(0), newArr.get(i)));
+                    if (listHeroes.size() == 0) {
+                        continue;
+                    }
+                    System.out.println(newArr.get(i).getAction(listHeroes.get(0)));
                 }
                 else {
                     System.out.print("Do you want to attack ");
@@ -141,19 +144,27 @@ public class Affect {
                     System.out.println("Enter the one that you want to attack as a number");
                     Scanner in = new Scanner(System.in);
                     int choice = in.nextInt();
-                    System.out.println(newArr.get(i).getAction(newArr.get(choice), newArr.get(i)));
+                    System.out.println(newArr.get(i).getAction(newArr.get(choice)));
 
                 }
-
-
-
-
-
+                Affect.addEffect(newArr.get(i));
+                if (newArr.get(i).getHealth() <= 0) {
+                    newArr.get(i).changeStatus(State.DEAD);
+                }
+                if (newArr.get(i).getStatus() == State.DEAD) {
+                    if (newArr.get(i).getClass() == Hero.class) {
+                        listHeroes.remove(newArr.get(i));
+                    }
+                    newArr.remove(i);
+                }
+                if (listHeroes.size() == 0) {
+                    break;
+                }
             }
             for (int i = 0; i < newArr.size(); i++) {
                 isTrue = false;
                 if (newArr.get(i).getClass() != Hero.class) {
-                    if (newArr.get(i).getHealth() > 0) {
+                    if (newArr.get(i).getStatus() == State.ALIVE) {
                         isTrue = true;
                     }
                 }

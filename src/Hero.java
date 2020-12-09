@@ -3,12 +3,15 @@ import java.util.Scanner;
 
 public class Hero extends Monster{
 
+    //Rather than using a constructor for this, I decided to instead use this makeHero function to make a new hero using the system inputs
+    //isNoob determines whether or not the person is new to RPGs. If they are (isNoob == true), then it simplifies the character creation process
+    //customWeapon determines whether or not they want to use a custom-made weapon, or one of my pre-made weapons (presently I have a sword and an axe, which you can find in Weapon.java
     public void makeHero(boolean isNoob, boolean customWeapon) {
         Scanner in = new Scanner(System.in);
         PrintStream out = System.out;
         out.println("Hello there! You are a brand-new hero! Please, enter your name");
         this.name = in.next();
-        out.println("Hello there, " + name);
+        out.println("Hello there, " + this.name);
         out.println("What is your health?");
         this.health = in.nextInt();
         out.println("So, are you magical, or not? (Input true or false)");
@@ -42,15 +45,14 @@ public class Hero extends Monster{
             attackBonus = 2;
             initiative = 2 + DiceTray.d20();
         }
-
-
     }
 
-
+    //Uses the Monster abstract class default constructor
     public Hero() {
         super();
     }
 
+    //This is how you make a hero using what you hard code in, instead of system input
     public Hero(String name, int health, String weaponName, int damage, int armorClass, boolean isMagic, int attackBonus, int initAdd) {
         super(health, weaponName, damage, armorClass, isMagic, attackBonus, name, initAdd);
         if (isMagic) {
@@ -58,6 +60,7 @@ public class Hero extends Monster{
         }
     }
 
+    //Determines if they are using a spell or not
     public int getChoice() {
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to attack with your weapon(1) or with a spell(2)?");
@@ -65,14 +68,15 @@ public class Hero extends Monster{
         return choice;
     }
 
+    //Determines the action
     @Override
-    public String getAction(Monster attacked, Monster attacker) {
+    public String getAction(Monster attacked) {
         int choice = getChoice();
         if (choice == 1) {
-            return Affect.hitsAndHurts(attacked, attacker);
+            return Affect.hitsAndHurts(attacked, this);
         }
         else {
-            return Affect.hitAndHurtsSpell(attacked, attacker);
+            return Affect.hitAndHurtsSpell(attacked, this);
         }
     }
 
@@ -80,7 +84,4 @@ public class Hero extends Monster{
     public String dialogue() {
         return "Hero's name is: " + name + "\n" + "Hero health: " + health + "\n" + weapon.toString() + "\n" + "Armor class: " + armorClass + "\n" + "Magical? " + isMagic;
     }
-
-
-
 }

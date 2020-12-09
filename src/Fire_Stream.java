@@ -8,7 +8,7 @@ public class Fire_Stream implements Spell{
         return DiceTray.d20();
     }
     public int rollDieDamage() {
-        return DiceTray.d12();
+        return 10;
     }
     public Effects effect() {
         return Effects.FIRE;

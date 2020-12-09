@@ -1,3 +1,4 @@
+//The abstract class that all characters, both heroes and bad guys, are children of
 public abstract class Monster {
     int health;
     Weapon weapon;
@@ -6,6 +7,8 @@ public abstract class Monster {
     int attackBonus;
     String name;
     int initiative;
+    State status = State.ALIVE;
+    Effects effect = Effects.NONE;
 
     public Monster() {
         this.name = "None";
@@ -29,7 +32,7 @@ public abstract class Monster {
 
     public Monster(int health, int armorClass, boolean isMagic, int attackBonus, String name, int initAdd) {
         this.health = health;
-        this.weapon = null;
+        this.weapon = null; //No weapon in this constructor
         this.armorClass = armorClass;
         this.isMagic = isMagic;
         this.attackBonus = attackBonus;
@@ -47,6 +50,7 @@ public abstract class Monster {
         this.initiative = initAdd + DiceTray.d20();
     }
 
+    //Most of these simply return the associated member variable
     public int getHealth() {
         return health;
     }
@@ -67,14 +71,26 @@ public abstract class Monster {
         return initiative;
     }
 
-    public String getAction(Monster attacked, Monster attacker) {
-        return Affect.hitsAndHurts(attacked, attacker);
+    //This monster attacks the attacked monster
+    public String getAction(Monster attacked) {
+        return Affect.hitsAndHurts(attacked, this);
     }
 
     public boolean isMagical() {
         return isMagic;
     }
 
+    public State getStatus() {return status;}
+
+    //Changes the status
+    public void changeStatus(State newState) { status = newState;}
+
+    public Effects getEffect() {return effect;}
+
+    //Changes the effect
+    public void changeEffect(Effects newEffect) { effect = newEffect;}
+
+    //These two change the health
     public void addHealth(int add) {
         health += add;
     }
@@ -82,6 +98,9 @@ public abstract class Monster {
     public void removeHealth(int subtract) {
         health -= subtract;
     }
+
+    //Changes the attack bonus
+    public void changeAttackBonus(int change) {attackBonus += change; }
 
     public int getAttackBonus() {
         return attackBonus;

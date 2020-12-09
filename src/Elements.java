@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+//I've been working on this as a possible side project. Essentially, each element is weak to and strong against another element. I am not sure if I'll end up implementing this however
 public enum Elements {
     FIRE, ICE, AIR, WATER, ELECTRIC, GRASS, GROUND, GHOSTLY, NONE;
 

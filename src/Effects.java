@@ -1,4 +1,4 @@
 public enum Effects {
-    FIRE, FROZEN;
-
+    FIRE, FROZEN, NONE;
+    //I use this to apply different effects
 }
