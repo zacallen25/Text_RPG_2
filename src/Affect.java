@@ -106,7 +106,7 @@ public class Affect {
     }
 
 
-    public static void fighting(ArrayList<Monster> fighters) {
+    public static String fighting(ArrayList<Monster> fighters) {
         ArrayList<Monster> newArr = determineInitiativeOrder(fighters);
         ArrayList<Monster> listHeroes = new ArrayList<>();
         boolean isTrue = true;
@@ -131,7 +131,7 @@ public class Affect {
                     System.out.println(newArr.get(i).getAction(listHeroes.get(0)));
                 }
                 else {
-                    System.out.print("Do you want to attack ");
+                    System.out.print("Do you (" + newArr.get(i).getName() + ") want to attack ");
                     for (int j = 0; j < newArr.size() - 1; j++) {
                         if (newArr.get(j).getClass() == Hero.class) {
                             continue;
@@ -177,10 +177,10 @@ public class Affect {
         }while(isTrue);
 
         if (listHeroes.size() != 0) {
-            System.out.println("Good victory!");
+            return ("Good victory!");
         }
         else {
-            System.out.println("Bad defeat!");
+            return ("Bad defeat!");
         }
 
     }
