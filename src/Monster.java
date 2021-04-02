@@ -7,6 +7,7 @@ public abstract class Monster {
     int attackBonus;
     String name;
     int initiative;
+    int turnsLeftStatus;
     State status = State.ALIVE;
     Effects effect = Effects.NONE;
 
@@ -71,6 +72,8 @@ public abstract class Monster {
         return initiative;
     }
 
+    public int getTurnsLeftStatus() {return turnsLeftStatus;}
+
     //This monster attacks the attacked monster
     public String getAction(Monster attacked) {
         return Affect.hitsAndHurts(attacked, this);
@@ -80,10 +83,30 @@ public abstract class Monster {
         return isMagic;
     }
 
+    public boolean hasTurnsStatusleft() {
+        return turnsLeftStatus > 0;
+    }
+
     public State getStatus() {return status;}
 
     //Changes the status
     public void changeStatus(State newState) { status = newState;}
+
+    public void decreaseTurnsLeftStatus() {
+        turnsLeftStatus--;
+    }
+
+    public void decreaseTurnsLeftStatus(int subtract) {
+        turnsLeftStatus -= subtract;
+    }
+
+    public void addTurnsLeftStatus(int add) {
+        turnsLeftStatus += add;
+    }
+
+    public void setTurnsLeftStatus(int turnsLeftStatus) {
+        this.turnsLeftStatus = turnsLeftStatus;
+    }
 
     public Effects getEffect() {return effect;}
 

@@ -49,7 +49,7 @@ public class Affect {
 
     public static Spell type() {
         Scanner in = new Scanner(System.in);
-        System.out.println("What magic attack do you want to do? Fire blast(1), Ice blast(2), or Fire stream(3)?");
+        System.out.println("What magic attack do you want to do? Fire blast(1), Ice blast(2), Fire stream(3), or Ice Stream(4)?");
         int input = in.nextInt();
         Spell spell;
         if (input == 1) {
@@ -58,8 +58,11 @@ public class Affect {
         else if (input == 2) {
             spell = new Ice_Blast();
         }
-        else {
+        else if (input == 3){
             spell = new Fire_Stream();
+        }
+        else {
+            spell = new Ice_Stream();
         }
         return spell;
     }
@@ -71,6 +74,8 @@ public class Affect {
         if (hitsSpell(attacked, attacker, spell.rollHit())) {
             int dmg = spell.rollDieDamage();;
             attacked.removeHealth(dmg);
+            attacked.changeEffect(spell.effect());
+            attacked.setTurnsLeftStatus(2);
             return "Spell " + "hits " + attacked.getName() + " for " + dmg + "\n " + attacked.getName() + " now has " + attacked.getHealth() + " health left";
         }
         else {
@@ -95,13 +100,16 @@ public class Affect {
         return newArr;
     }
 
+
     //Needs to be worked on
     public static void addEffect(Monster m) {
-        if (m.getEffect() == Effects.FIRE) {
+        if (m.getEffect() == Effects.FIRE && m.hasTurnsStatusleft()) {
             m.removeHealth(DiceTray.d4());
+            m.decreaseTurnsLeftStatus();
         }
-        if (m.getEffect() == Effects.FROZEN) {
+        if (m.getEffect() == Effects.FROZEN && m.hasTurnsStatusleft()) {
             m.changeAttackBonus(-2);
+            m.decreaseTurnsLeftStatus();
         }
     }
 
@@ -123,6 +131,7 @@ public class Affect {
                 }
                 if (newArr.get(i).getClass() != Hero.class) {
                     if (newArr.get(i).getStatus() == State.DEAD) {
+                        //newArr.remove(i);
                         continue;
                     }
                     if (listHeroes.size() == 0) {
@@ -145,7 +154,15 @@ public class Affect {
                     Scanner in = new Scanner(System.in);
                     int choice = in.nextInt();
                     System.out.println(newArr.get(i).getAction(newArr.get(choice)));
-
+                    if (newArr.get(choice).getHealth() <= 0) {
+                        newArr.get(choice).changeStatus(State.DEAD);
+                    }
+                    if (newArr.get(choice).getStatus() == State.DEAD) {
+                        if (newArr.get(choice).getClass() == Hero.class) {
+                            listHeroes.remove(newArr.get(choice));
+                        }
+                        newArr.remove(choice);
+                    }
                 }
                 Affect.addEffect(newArr.get(i));
                 if (newArr.get(i).getHealth() <= 0) {
@@ -172,7 +189,6 @@ public class Affect {
                     isTrue = false;
                 }
             }
-
 
         }while(isTrue);
 
