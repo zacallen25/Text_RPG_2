@@ -76,7 +76,7 @@ public class Affect {
             attacked.removeHealth(dmg);
             attacked.changeEffect(spell.effect());
             attacked.setTurnsLeftStatus(2);
-            return "Spell " + "hits " + attacked.getName() + " for " + dmg + "\n " + attacked.getName() + " now has " + attacked.getHealth() + " health left";
+            return "Spell " + "hits " + attacked.getName() + " for " + dmg + "\n" + attacked.getName() + " now has " + attacked.getHealth() + " health left";
         }
         else {
             return "Spell failed to hit.";
@@ -107,9 +107,12 @@ public class Affect {
             m.removeHealth(DiceTray.d4());
             m.decreaseTurnsLeftStatus();
         }
-        if (m.getEffect() == Effects.FROZEN && m.hasTurnsStatusleft()) {
+        else if (m.getEffect() == Effects.FROZEN && m.hasTurnsStatusleft()) {
             m.changeAttackBonus(-2);
             m.decreaseTurnsLeftStatus();
+        }
+        else {
+            m.changeEffect(Effects.NONE);
         }
     }
 
@@ -150,9 +153,22 @@ public class Affect {
                     if (newArr.get(newArr.size() - 1).getClass() != Hero.class) {
                         System.out.println(newArr.get(newArr.size() - 1) + " " + (newArr.size() - 1));
                     }
-                    System.out.println("Enter the one that you want to attack as a number");
+                    System.out.println("Enter the one that you want to attack as a number, or enter " + newArr.size() + " to view stats for everyone");
                     Scanner in = new Scanner(System.in);
                     int choice = in.nextInt();
+                    /*
+                    while(choice == newArr.size()) {
+
+                    }
+                     */
+                    if (choice == newArr.size()) {
+                        for (int k = 0; k < newArr.size(); k++) {
+                            System.out.println("Name: " + newArr.get(k).getName() + "\tHealth: " + newArr.get(k).getHealth() + "\tEffects: " + newArr.get(k).getEffect());
+                        }
+                        System.out.println("Enter the one that you want to attack as a number");
+                        choice = in.nextInt();
+                    }
+
                     System.out.println(newArr.get(i).getAction(newArr.get(choice)));
                     if (newArr.get(choice).getHealth() <= 0) {
                         newArr.get(choice).changeStatus(State.DEAD);
@@ -178,8 +194,8 @@ public class Affect {
                     break;
                 }
             }
+            isTrue = false;
             for (int i = 0; i < newArr.size(); i++) {
-                isTrue = false;
                 if (newArr.get(i).getClass() != Hero.class) {
                     if (newArr.get(i).getStatus() == State.ALIVE) {
                         isTrue = true;

@@ -8,6 +8,7 @@ public abstract class Monster {
     String name;
     int initiative;
     int turnsLeftStatus;
+    int karma = 0;
     State status = State.ALIVE;
     Effects effect = Effects.NONE;
 
@@ -72,6 +73,8 @@ public abstract class Monster {
         return initiative;
     }
 
+    public int getKarma() {return karma;}
+
     public int getTurnsLeftStatus() {return turnsLeftStatus;}
 
     //This monster attacks the attacked monster
@@ -83,30 +86,22 @@ public abstract class Monster {
         return isMagic;
     }
 
-    public boolean hasTurnsStatusleft() {
-        return turnsLeftStatus > 0;
-    }
+    public boolean hasTurnsStatusleft() { return turnsLeftStatus > 0; }
 
     public State getStatus() {return status;}
 
     //Changes the status
     public void changeStatus(State newState) { status = newState;}
 
-    public void decreaseTurnsLeftStatus() {
-        turnsLeftStatus--;
-    }
+    public void decreaseTurnsLeftStatus() {turnsLeftStatus--; }
 
-    public void decreaseTurnsLeftStatus(int subtract) {
-        turnsLeftStatus -= subtract;
-    }
+    public void changeKarma(int changeKarma) {karma += changeKarma;}
 
-    public void addTurnsLeftStatus(int add) {
-        turnsLeftStatus += add;
-    }
+    public void decreaseTurnsLeftStatus(int subtract) { turnsLeftStatus -= subtract;}
 
-    public void setTurnsLeftStatus(int turnsLeftStatus) {
-        this.turnsLeftStatus = turnsLeftStatus;
-    }
+    public void addTurnsLeftStatus(int add) {turnsLeftStatus += add;}
+
+    public void setTurnsLeftStatus(int turnsLeftStatus) {this.turnsLeftStatus = turnsLeftStatus; }
 
     public Effects getEffect() {return effect;}
 
