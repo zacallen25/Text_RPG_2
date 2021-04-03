@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 //This class is where different objects can affect each other. Therefore, almost every function is public and static, so there is no need for a specific class instance
@@ -121,6 +122,7 @@ public class Affect {
         ArrayList<Monster> newArr = determineInitiativeOrder(fighters);
         ArrayList<Monster> listHeroes = new ArrayList<>();
         boolean isTrue = true;
+        Random rand = new Random();
         for (int i = 0; i < newArr.size(); i++) {
             if (newArr.get(i).getClass() == Hero.class) {
                 listHeroes.add(newArr.get(i));
@@ -140,7 +142,13 @@ public class Affect {
                     if (listHeroes.size() == 0) {
                         continue;
                     }
-                    System.out.println(newArr.get(i).getAction(listHeroes.get(0)));
+                    int attackNum = rand.nextInt(listHeroes.size());
+                    System.out.println(newArr.get(i).getAction(listHeroes.get(attackNum)));
+                    if (listHeroes.get(attackNum).getHealth() <= 0) {
+                        listHeroes.get(attackNum).changeStatus(State.DEAD);
+                        newArr.remove(newArr.indexOf(listHeroes.get(attackNum)));
+                        listHeroes.remove(attackNum);
+                    }
                 }
                 else {
                     System.out.print("Do you (" + newArr.get(i).getName() + ") want to attack ");
@@ -161,6 +169,10 @@ public class Affect {
 
                     }
                      */
+                    while(newArr.get(choice).getClass() == Hero.class) {
+                        System.out.println("Don't attack a hero! Try again: ");
+                        choice = in.nextInt();
+                    }
                     if (choice == newArr.size()) {
                         for (int k = 0; k < newArr.size(); k++) {
                             System.out.println("Name: " + newArr.get(k).getName() + "\tHealth: " + newArr.get(k).getHealth() + "\tEffects: " + newArr.get(k).getEffect());
@@ -179,6 +191,9 @@ public class Affect {
                         }
                         newArr.remove(choice);
                     }
+                }
+                if(listHeroes.size() == 0) {
+                    break;
                 }
                 Affect.addEffect(newArr.get(i));
                 if (newArr.get(i).getHealth() <= 0) {

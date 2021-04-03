@@ -42,6 +42,9 @@ public class Weapon {
 
         if (isMagic) {
             damage -= 3;
+            if (damage <= 0) {
+                damage = 1;
+            }
         }
     }
 

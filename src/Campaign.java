@@ -64,7 +64,7 @@ public class Campaign {
         String outcome = Affect.fighting(orderedFight);
 
         if (outcome == "Bad defeat!") {
-            return "You have all died";
+            return "You have all died. Sorry. Better luck next time?";
         }
         o.println("As you prepare to strike down the last one, he falls to the ground. He cries out, \"Pleasssssse don't kill me, I can give you information! I'll give you anything! Just don't kill me!");
         int choice1 = 2;

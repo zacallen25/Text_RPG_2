@@ -21,7 +21,7 @@ public static int turns = 0; //I'm working on implementing turns, largely for th
 
 //        Hero hero = new Hero();
 //        hero.makeHero(false, false);
-        Hero hero1 = new Hero("Zac", 50, "Sword", 15, 15, true, 5, 5);
+        Hero hero1 = new Hero("Zac", 50, "Sword",  15, true, 5, 5);
 //        Hero hero2 = new Hero();
 //        hero2.makeHero(true, false);
 

@@ -60,6 +60,18 @@ public class Hero extends Monster{
         }
     }
 
+    public Hero(String name, int health, String weaponName, int armorClass, boolean isMagic, int attackBonus, int initAdd) {
+        this.name = name;
+        this.health = health;
+        this.weapon = new Weapon(weaponName, isMagic);
+        this.armorClass = armorClass;
+        this.isMagic = isMagic;
+        this.attackBonus = attackBonus;
+        this.initiative = initAdd + DiceTray.d20();
+    }
+
+
+
     //Determines if they are using a spell or not
     public int getChoice() {
         Scanner input = new Scanner(System.in);
