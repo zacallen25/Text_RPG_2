@@ -92,9 +92,15 @@ public class Campaign {
         }
         if (choice1 == 1) {
             o.println("You prepare your weapon, then cleave his head clean off. The driver looks at you, and says that \"Well that was a bit extreme. Oh well though.\"");
+            for (int k = 0; k < Heroes.size(); k++) {
+                Heroes.get(k).changeKarma(-20);
+            }
         }
         else {
             o.println("You tell him that he may go. He says \"Thank you, thank you so so so so so much!!! I will never forget this!\" Then he scampers away into the woods.");
+            for (int k = 0; k < Heroes.size(); k++) {
+                Heroes.get(k).changeKarma(5);
+            }
         }
 
      return "You win";

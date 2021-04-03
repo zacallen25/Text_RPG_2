@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Hero extends Monster{
 
+    int karma = 0;
     //Rather than using a constructor for this, I decided to instead use this makeHero function to make a new hero using the system inputs
     //isNoob determines whether or not the person is new to RPGs. If they are (isNoob == true), then it simplifies the character creation process
     //customWeapon determines whether or not they want to use a custom-made weapon, or one of my pre-made weapons (presently I have a sword and an axe, which you can find in Weapon.java
@@ -80,6 +81,9 @@ public class Hero extends Monster{
         return choice;
     }
 
+    public int getKarma() {return karma;}
+
+    public void changeKarma(int changeKarma) {karma += changeKarma;}
     //Determines the action
     @Override
     public String getAction(Monster attacked) {

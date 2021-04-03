@@ -8,7 +8,6 @@ public abstract class Monster {
     String name;
     int initiative;
     int turnsLeftStatus;
-    int karma = 0;
     State status = State.ALIVE;
     Effects effect = Effects.NONE;
 
@@ -73,7 +72,6 @@ public abstract class Monster {
         return initiative;
     }
 
-    public int getKarma() {return karma;}
 
     public int getTurnsLeftStatus() {return turnsLeftStatus;}
 
@@ -95,7 +93,6 @@ public abstract class Monster {
 
     public void decreaseTurnsLeftStatus() {turnsLeftStatus--; }
 
-    public void changeKarma(int changeKarma) {karma += changeKarma;}
 
     public void decreaseTurnsLeftStatus(int subtract) { turnsLeftStatus -= subtract;}
 

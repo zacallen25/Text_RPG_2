@@ -33,11 +33,28 @@ public class Weapon {
     //I want isMagic to yield an advantage to using magic, but a disadvantage to using normal weapons (-3 damage)
     public Weapon(String name, boolean isMagic) {
         this.name = name;
-        if (name.equals("sword") || name.equals("Sword")) {
+        if (name.equalsIgnoreCase("Sword")) {
             damage = DiceTray.d6() + DiceTray.d6();
         }
-        else if (name.equals("axe") || name.equals("Axe")) {
+        else if (name.equalsIgnoreCase("Axe")) {
             damage = DiceTray.d10();
+        }
+        else if (name.equalsIgnoreCase("Good Axe")) {
+            damage = DiceTray.d12();
+        }
+        else if (name.equalsIgnoreCase("Better Axe")) {
+            damage = DiceTray.d20();
+        }
+        else if (name.equalsIgnoreCase("Good Sword")) {
+            damage = DiceTray.d10() + DiceTray.d10();
+        }
+        else if (name.equalsIgnoreCase("Better Sword")) {
+            damage = DiceTray.d12() + DiceTray.d12();
+        }
+
+
+        else {
+            damage = 1;
         }
 
         if (isMagic) {
