@@ -1,5 +1,6 @@
 public class Fire_Stream implements Spell{
     int uses = 2;
+    int turnsEffect = 2;
     public int rollHit() {
         if (uses <= 0) {
             return 0;
@@ -12,6 +13,11 @@ public class Fire_Stream implements Spell{
     }
     public Effects effect() {
         return Effects.FIRE;
+    }
+
+    @Override
+    public int getTurnsEffect() {
+        return turnsEffect;
     }
 }
 

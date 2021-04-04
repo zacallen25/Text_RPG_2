@@ -1,6 +1,5 @@
-public class Ice_Stream implements Spell{
-    int uses = 2;
-    int turnsEffect = 2;
+public class Magic_Missle implements Spell{
+    int uses = 3;
     public int rollHit() {
         if (uses <= 0) {
             return 0;
@@ -9,14 +8,16 @@ public class Ice_Stream implements Spell{
         return DiceTray.d20();
     }
     public int rollDieDamage() {
-        return 10;
+        return DiceTray.d6() + DiceTray.d6() + DiceTray.d6();
     }
+
     public Effects effect() {
-        return Effects.FROZEN;
+        return Effects.NONE;
     }
 
     @Override
     public int getTurnsEffect() {
-        return turnsEffect;
+        return 0;
     }
+
 }
