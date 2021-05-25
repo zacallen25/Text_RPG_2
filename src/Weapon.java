@@ -7,21 +7,15 @@ public class Weapon {
         int damage;
         DiceTray rand = new DiceTray();
         int nam = rand.d4();
-        int dam = rand.d10();
-        if (nam == 1) {
-            name = "Axe";
+        //int dam = rand.d10();
+        if (nam == 1 || nam == 3) {
+            new Weapon("Axe", false);
         }
-        else if (nam == 2) {
-            name = "Sword";
+        else if (nam == 2 || nam == 4) {
+            new Weapon("Sword", false);
         }
-        else if (nam == 3) {
-            name = "Staff";
-        }
-        else {
-            name = "Mace";
-        }
-        this.name = name;
-        this.damage = dam;
+//        this.name = name;
+//        this.damage = dam;
     }
 
 
@@ -51,7 +45,6 @@ public class Weapon {
         else if (name.equalsIgnoreCase("Better Sword")) {
             damage = DiceTray.d12() + DiceTray.d12();
         }
-
 
         else {
             damage = 1;

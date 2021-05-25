@@ -87,6 +87,31 @@ public class Affect {
         }
     }
 
+    public static String hitsAndHurtsSpell(Monster attacked, Monster attacker, Spell spell) {
+        int attackRoll = DiceTray.d20();
+
+        if(hitsSpell(attacked, attacker, spell.rollHit())) {
+            int dmg = spell.rollDieDamage();
+            attacked.removeHealth(dmg);
+            attacked.changeEffect(spell.effect());
+            attacked.setTurnsLeftStatus(spell.getTurnsEffect());
+            return "Spell " + "hits " + attacked.getName() + " for " + dmg + "\n" + attacked.getName() + " now has " + attacked.getHealth() + " health left";
+        }
+        else {
+            return "Spell failed to hit.";
+        }
+    }
+
+    public static Spell getRandomSpell() {
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(5);
+        if (randomNumber == 0) {return new Fire_Blast();}
+        else if (randomNumber == 1) {return new Fire_Stream();}
+        else if (randomNumber == 2) {return new Ice_Stream();}
+        else if (randomNumber == 3) {return new Ice_Blast();}
+        else {return new Magic_Missle();}
+    }
+
     public static ArrayList<Monster> determineInitiativeOrder(ArrayList<Monster> fighters) {
         ArrayList<Monster> newArr = new ArrayList<>();
         while (!fighters.isEmpty()) {

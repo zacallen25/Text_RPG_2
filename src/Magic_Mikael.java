@@ -10,6 +10,9 @@ public class Magic_Mikael extends Monster{
         super(health, armorClass, true, attackBonus, name, initAdd);
     }
 
-
-
+    @Override
+    public String getAction(Monster attacked) {
+        Spell spell = Affect.getRandomSpell();
+        return Affect.hitsAndHurtsSpell(attacked, this, spell);
+    }
 }
