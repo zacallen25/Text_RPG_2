@@ -22,8 +22,8 @@ public static int turns = 0; //I'm working on implementing turns, largely for th
 //        Hero hero = new Hero();
 //        hero.makeHero(false, false);
         Hero hero1 = new Hero("Zac", 50, "Sword",  15, true, 5, 5);
-//        Hero hero2 = new Hero();
-//        hero2.makeHero(true, false);
+        Hero hero2 = new Hero();
+        hero2.makeHero(false, false);
         //Hero hero3 = new Hero("Alyssa", 50, "Sword", 15, true, 5, 5);
 
         Goblin gob1 = new Goblin("Moblin", 20,  10, 2, 0);
@@ -48,7 +48,7 @@ public static int turns = 0; //I'm working on implementing turns, largely for th
         ArrayList<Hero> heroList = new ArrayList<>();
         heroList.add(hero1);
         //heroList.add(hero3);
-        //heroList.add(hero2);
+        heroList.add(hero2);
 
         System.out.println(Campaign.campaign(heroList));
 
